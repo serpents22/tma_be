@@ -17,12 +17,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 exit(0);
 }
 
+// $scores = new scoresData();
+// $request_method=$_SERVER["REQUEST_METHOD"];
+// switch ($request_method) {
+// 	case 'GET':
+// 	  $scores->getScores();
+// 	break;
+// 	default:
+// 		// Invalid Request Method
+// 			header("HTTP/1.0 405 Method Not Allowed");
+// 			break;
+// 		break;
+// }
+
+
 $scores = new scoresData();
 $request_method=$_SERVER["REQUEST_METHOD"];
 switch ($request_method) {
 	case 'GET':
-	  $scores->getScores();
-	break;
+			  $scores->getScores();
+			break;
+	case 'POST':
+			if(!empty($_GET["id"]))
+			{
+				$id=intval($_GET["id"]);
+				$scores->update_scores($id);
+			}
+			else
+			{
+				$scores->insert_scores();
+			}		
+			break; 
+	case 'DELETE':
+		    $id=intval($_GET["id"]);
+            $scores->deleteScores($id);
+            break;
 	default:
 		// Invalid Request Method
 			header("HTTP/1.0 405 Method Not Allowed");
