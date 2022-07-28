@@ -1,0 +1,9 @@
+RewriteEngine On # Turn on the rewriting engine
+RewriteRule ^mahasiswa/?$ mahasiswa.php [NC,L]
+RewriteRule ^mahasiswa/([0-9]+)/?$ mahasiswa.php?id=$1 [NC,L]
+RewriteRule ^matakuliah/?$ matakuliah.php [NC,L]
+RewriteRule ^matakuliah/([0-9]+)/?$ matakuliah.php?id=$1 [NC,L]
+RewriteRule ^nilai/?$ nilai.php [NC,L]
+RewriteRule ^nilai/([0-9]+)/?$ nilai.php?id=$1 [NC,L]
+RewriteRule ^scores/?$ showTableData.php [NC,L]
+RewriteRule ^scores/([0-9]+)/?$ showTableData.php?id=$1 [NC,L]
