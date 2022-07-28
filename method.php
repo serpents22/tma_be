@@ -448,6 +448,7 @@ class scoresData
                   tbl_mahasiswa.nama_mahasiswa,
                   tbl_matakuliah.nama_matakuliah,
                   tbl_nilai.nilai,
+                  tbl_nilai.id_nilai,
                   CASE
                     WHEN tbl_nilai.nilai >= 70 THEN 'Lulus'
                     WHEN tbl_nilai.nilai < 70 THEN 'Tidak Lulus'
@@ -468,6 +469,27 @@ class scoresData
                      'message' =>'Get Scores Success.',
                      'data' => $data,
                   );
+      header('Content-Type: application/json');
+      echo json_encode($response);
+   }
+   function deleteScores($id)
+   {
+      global $conn;
+      $query="DELETE FROM tbl_nilai WHERE id_nilai=$id";
+      if(mysqli_query($conn, $query))
+      {
+         $response=array(
+            'status' => 1,
+            'message' =>'Nilai Deleted Successfully.'
+         );
+      }
+      else
+      {
+         $response=array(
+            'status' => 0,
+            'message' =>'Nilai Deletion Failed.'
+         );
+      }
       header('Content-Type: application/json');
       echo json_encode($response);
    }
